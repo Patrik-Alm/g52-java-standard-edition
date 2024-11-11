@@ -141,7 +141,21 @@ public class ArrayListExamples {
         System.out.println("originalList = " + originalList.size());
         System.out.println("referenceList = " + referenceList.size());
 
-//        ArrayList<String> copyListCast = originalList.clone();
+
+        //Making a Copy of the list
+        ArrayList<String> otherCopy = new ArrayList<>();
+        otherCopy.addAll(originalList);
+
+        //A shorthand way to make a copy
+        ArrayList<String> copyList = new ArrayList<>(originalList);
+
+        //💫 Bonus tip: for Horizontal Printing.
+        copyList.forEach(System.out::println);
+
+
+
+
+
     }
 
     public static void ex5() {
