@@ -153,9 +153,6 @@ public class ArrayListExamples {
         copyList.forEach(System.out::println);
 
 
-
-
-
     }
 
     public static void ex5() {

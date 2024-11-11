@@ -12,7 +12,7 @@ public class HashMapExample {
     }
 
 
-    public static void ex1(){
+    public static void ex1() {
 
         HashMap<String, String> contacts = new HashMap<>();
 
@@ -28,7 +28,7 @@ public class HashMapExample {
 
         // After Lecture
 
-        for (Map.Entry<String, String> entry: contacts.entrySet() ){
+        for (Map.Entry<String, String> entry : contacts.entrySet()) {
             System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
         }
 

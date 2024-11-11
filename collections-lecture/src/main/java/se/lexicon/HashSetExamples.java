@@ -25,7 +25,7 @@ public class HashSetExamples {
         System.out.println(countries);
     }
 
-    public static void ex2(){
+    public static void ex2() {
 
         HashSet<Person> people = new HashSet<>();
         people.add(new Person(3, "John", "Doe", "jon@test.se"));
