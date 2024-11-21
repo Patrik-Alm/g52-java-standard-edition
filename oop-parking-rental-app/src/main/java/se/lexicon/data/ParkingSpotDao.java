@@ -14,10 +14,10 @@ public interface ParkingSpotDao {
 
     Collection<ParkingSpot> findAll();
 
-    Collection<ParkingSpot> findByAreaCode(String areaCode);
+    Collection<ParkingSpot> findByAreaCode(int areaCode);
 
-    void occupy();
+    void occupy(ParkingSpot parkingSpot);
 
-    void vacate();
+    void vacate(ParkingSpot parkingSpot);
 
 }
