@@ -3,11 +3,12 @@ package se.lexicon.data;
 import se.lexicon.model.Customer;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface CustomerDao {
     Customer create(Customer customer);
 
-    Customer findById(int id);
+    Optional<Customer> findById(int id);
 
     Customer findByReservationId(int rid);
 
