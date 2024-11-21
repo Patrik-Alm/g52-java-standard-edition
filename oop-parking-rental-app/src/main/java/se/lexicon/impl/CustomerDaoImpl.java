@@ -9,8 +9,17 @@ public class CustomerDaoImpl implements CustomerDao {
 
     private final List<Customer> storage;
 
+    private static CustomerDaoImpl instance;
 
-    public CustomerDaoImpl() {
+    /*           https://www.tutorialspoint.com/design_pattern/singleton_pattern.htm            */
+    public static CustomerDaoImpl getInstance(){
+        if (instance == null){
+            instance = new CustomerDaoImpl();
+        }
+        return instance;
+    }
+
+    private CustomerDaoImpl() {
         this.storage = new ArrayList<>();
     }
 
