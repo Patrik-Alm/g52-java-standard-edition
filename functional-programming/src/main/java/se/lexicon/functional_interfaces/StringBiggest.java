@@ -1,6 +1,6 @@
-package se.lexicon;
+package se.lexicon.functional_interfaces;
 
-import se.lexicon.interfaces.DoStringStuff;
+import se.lexicon.functional_interfaces.interfaces.DoStringStuff;
 
 public class StringBiggest implements DoStringStuff {
     @Override

@@ -1,4 +1,4 @@
-package se.lexicon.interfaces;
+package se.lexicon.functional_interfaces.interfaces;
 
 @FunctionalInterface
 public interface StringValidator {

@@ -1,4 +1,4 @@
-package se.lexicon.practice;
+package se.lexicon.functional_interfaces.practice;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package se.lexicon.practice;
+package se.lexicon.functional_interfaces.practice;
 
 public class Product {
     private String productName;

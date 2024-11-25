@@ -1,6 +1,6 @@
-package se.lexicon;
+package se.lexicon.functional_interfaces;
 
-import se.lexicon.interfaces.*;
+import se.lexicon.functional_interfaces.interfaces.*;
 
 import java.util.Random;
 import java.util.regex.Pattern;

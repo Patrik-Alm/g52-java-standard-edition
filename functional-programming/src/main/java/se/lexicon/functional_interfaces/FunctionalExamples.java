@@ -1,7 +1,7 @@
-package se.lexicon;
+package se.lexicon.functional_interfaces;
 
-import se.lexicon.interfaces.DoStringStuff;
-import se.lexicon.interfaces.DoubleOperator;
+import se.lexicon.functional_interfaces.interfaces.DoStringStuff;
+import se.lexicon.functional_interfaces.interfaces.DoubleOperator;
 
 public class FunctionalExamples {
 
