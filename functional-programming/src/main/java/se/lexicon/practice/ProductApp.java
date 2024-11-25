@@ -18,6 +18,7 @@ public class ProductApp {
         //What
 
 
+        System.out.println("----------------- Exercise 1 -----------------");
         // 1. Print out all Products that have a stock value of 0.
         //Action
         Action printProduct = (p) -> System.out.println(p.toString());
@@ -27,6 +28,7 @@ public class ProductApp {
         process(products, conditionalForStockZero, printProduct);
 
 
+        System.out.println("----------------- Exercise 2 -----------------");
         // 2. Print out the productName of all the Products that starts with B.
 
         process(products,
@@ -35,8 +37,22 @@ public class ProductApp {
         );
 
 
-        // TODO: 3. Print out all Products that have price above 100 AND lower than 150
-        // TODO: 4. Increase the price of all Products that have a stock value of less than 10 AND above 0 by 50%
+        System.out.println("----------------- Exercise 3 -----------------");
+        // 3. Print out all Products that have price above 100 AND lower than 150
+
+        process(products, p -> p.getPrice() >= 100 && p.getPrice() <= 150, printProduct  );
+
+
+        System.out.println("----------------- Exercise 4 -----------------");
+        // 4. Increase the price of all Products that have a stock value of less than 10 AND above 0 by 50%
+        process(products,
+                p ->  p.getStock() < 10 && p.getStock() > 0,    //Check conditional
+                p -> p.setPrice(p.getPrice() * 1.5 )            //Increase the price by 50%
+                );
+
+        products.forEach(
+                product -> System.out.println(product.toString())
+        );
 
     }
 
