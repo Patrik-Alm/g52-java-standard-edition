@@ -2,6 +2,7 @@ package se.lexicon.stream_api;
 
 import se.lexicon.stream_api.model.Gender;
 import se.lexicon.stream_api.model.Person;
+import se.lexicon.stream_api.service.People;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -11,9 +12,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamExamples {
+
+    private static final List<Person> PEOPLE = People.INSTANCE.getPeople();
+
+
     public static void main(String[] args) {
 
-        ex10();
+        ex13();
     }
 
     // Terminal Operation: Count
@@ -159,6 +164,41 @@ public class StreamExamples {
 
 
     }
+    public static void ex11(){
+
+        List<Person> list = PEOPLE.stream()
+                .filter(person -> person.getGender() == Gender.FEMALE)
+                .filter(person -> person.getFirstName().startsWith("M"))
+                .filter(person -> person.getDateOfBirth().isAfter(LocalDate.parse("1999-12-31")))
+                .toList();
+
+        list.forEach(System.out::println);
+    }
+
+    public static void ex12(){
+        // Get FULLNAME of persons born in January 1970
+
+        List<String> list = PEOPLE.stream()
+                .filter(person -> person.getDateOfBirth().isBefore(LocalDate.of(1970, 2, 1)))
+                .filter(person -> person.getDateOfBirth().isAfter(LocalDate.parse("1969-12-31")))
+                .peek(System.out::println) //Debugging only
+                .map(person -> person.getFirstName() + " " + person.getLastName())
+                .toList();
+
+        list.forEach(System.out::println);
+    }
+
+    public static void ex13(){
+
+        Map<String, List<Person>> collect = PEOPLE.stream()
+                .collect(Collectors.groupingBy(person -> person.getLastName()));
+
+        collect.forEach((lastname, people) -> {
+            System.out.println(lastname);
+            System.out.println(people);
+        });
+    }
+
 
 
 }
