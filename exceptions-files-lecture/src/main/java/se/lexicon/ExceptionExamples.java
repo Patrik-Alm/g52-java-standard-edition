@@ -1,11 +1,18 @@
 package se.lexicon;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -30,7 +37,8 @@ public class ExceptionExamples {
 
 //        copyImage();
 //        writeTextToFile();
-        writeTextToFileResource();
+//        writeTextToFileResource();
+        readPeopleFromJSON();
     }
 
     //RunTime Exception
@@ -236,10 +244,54 @@ public class ExceptionExamples {
             System.out.println("Finally Block executed");
         }
 
+    }
+    //JSON File (READ / WRITE JSON file using Jackson)
+    public static void savePeopleAsJSON(){
 
+        List<Person> people = new ArrayList<>();
+
+        people.add(new Person("Alice",30));
+        people.add(new Person("Bob", 25));
+        people.add(new Person("Charles", 35));
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        File file = new File("exceptions-files-lecture/folder/people.json");
+
+
+        try {
+            objectMapper.writeValue(file,people);
+            System.out.println("People data saved to File.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
+
+    public static void readPeopleFromJSON(){
+
+        File file = new File("exceptions-files-lecture/folder/people.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Person> people = null;
+
+        try {
+           people = objectMapper.readValue(file, new TypeReference<List<Person>>(){});
+
+            System.out.println("People Data read from JSON file");
+
+            people.forEach(System.out::println);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
 
 
 
