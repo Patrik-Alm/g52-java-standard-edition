@@ -1,6 +1,7 @@
 package se.lexicon;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.*;
 import java.time.LocalDate;
@@ -27,8 +28,9 @@ public class ExceptionExamples {
 //        LocalDate localDate = takeDateInput.get();
 
 
-        withdrawal();
-
+//        copyImage();
+//        writeTextToFile();
+        writeTextToFileResource();
     }
 
     //RunTime Exception
@@ -125,14 +127,14 @@ public class ExceptionExamples {
 
     //Copy an Image to another folder using NIO
     public static void copyImage() {
-        Path sourceFile = Paths.get("exceptions-files-lecture/source/Java-Development-Kit-Horizontal.png");
+        Path sourceFile = Paths.get("exceptions-files-lecture/source/Grogu.png");
         Path destinationPath = Paths.get("exceptions-files-lecture/destination");
 
         try {
-
+            Files.createDirectory(destinationPath);
             Files.copy(sourceFile, destinationPath.resolve(sourceFile.getFileName())
-                    , StandardCopyOption.REPLACE_EXISTING,
-                    StandardCopyOption.COPY_ATTRIBUTES
+                    ,StandardCopyOption.REPLACE_EXISTING
+                    ,StandardCopyOption.COPY_ATTRIBUTES
             );
 
             //Specific Exception -> General Exception
@@ -187,5 +189,59 @@ public class ExceptionExamples {
 
     // throw: is used to throw an exception or exceptional event(propagate the exception to a higher-lever).
     // throws: is used to indicate that a method might throw one or more exceptions -- What about checked vs unchecked
+
+
+    public static void writeTextToFile(){
+
+        Path relativePath = Paths.get("exceptions-files-lecture/folder/TextHere.txt");
+
+        BufferedWriter bufferedWriter = null;
+        try{
+             bufferedWriter = Files.newBufferedWriter(relativePath);
+            bufferedWriter.write("Hello Group 52");
+            bufferedWriter.newLine();
+
+        }catch (IOException ex){
+            System.out.println("An I/O Exception occurred: " + ex.getMessage());
+        }finally { //Always running last
+            System.out.println("Finally Block Executed");
+            if (bufferedWriter != null){
+                try{
+                    bufferedWriter.close();
+                }catch (IOException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+    public static void writeTextToFileResource(){
+        Path relativePath = Paths.get("exceptions-files-lecture/folder/TextHere.txt");
+
+        // Try with Resource - AutoCloses resources, if they implement AutoClosable Interface
+        try(BufferedWriter bufferedWriter = Files.newBufferedWriter(relativePath
+                ,StandardOpenOption.CREATE
+                ,StandardOpenOption.APPEND)
+        ){
+
+            bufferedWriter.write("In the middle of difficulty lies opportunity. – Albert Einstein");
+            bufferedWriter.newLine();
+        }catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }finally {
+            // Will always run last
+            //Clean up station
+            System.out.println("Finally Block executed");
+        }
+
+
+
+
+    }
+
+
+
 
 }
