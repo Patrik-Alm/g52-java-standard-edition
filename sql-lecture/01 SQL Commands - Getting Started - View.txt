@@ -1,0 +1,128 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 24
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA;
++---------------------+
+| SCHEMA_NAME         |
++---------------------+
+| mysql               |
+| information_schema  |
+| performance_schema  |
+| sys                 |
+| sakila              |
+| world               |
+| school_db           |
+| lecture_db          |
+| test_db             |
+| name_storage_db     |
+| meeting_calendar_db |
+| g46_jpa_lecture     |
+| g48_jpa_lecture     |
+| g48-todo-api        |
+| email_sender_db     |
+| g46_todo_db         |
+| marketplace-api     |
+| marketplace         |
++---------------------+
+18 rows in set (0.01 sec)
+
+mysql> CREATE DATABASE 00_test_db;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA;
++---------------------+
+| SCHEMA_NAME         |
++---------------------+
+| mysql               |
+| information_schema  |
+| performance_schema  |
+| sys                 |
+| sakila              |
+| world               |
+| school_db           |
+| lecture_db          |
+| test_db             |
+| name_storage_db     |
+| meeting_calendar_db |
+| g46_jpa_lecture     |
+| g48_jpa_lecture     |
+| g48-todo-api        |
+| email_sender_db     |
+| g46_todo_db         |
+| marketplace-api     |
+| marketplace         |
+| 00_test_db          |
++---------------------+
+19 rows in set (0.00 sec)
+
+mysql> USE 00_test_db;
+Database changed
+
+mysql> SHOW TABLES;
+Empty set (0.01 sec)
+
+mysql> CREATE TABLE task (
+    -> id INT,
+    -> title VARCHAR(255),
+    -> _description VARCHAR(500)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_00_test_db |
++----------------------+
+| task                 |
++----------------------+
+1 row in set (0.01 sec)
+
+mysql> SHOW COLUMNS FROM task;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| id           | int          | YES  |     | NULL    |       |
+| title        | varchar(255) | YES  |     | NULL    |       |
+| _description | varchar(500) | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT * FROM task;
+Empty set (0.01 sec)
+
+mysql> SELECT * FROM task;
++------+-------------------------+--------------------------------------------+
+| id   | title                   | _description                               |
++------+-------------------------+--------------------------------------------+
+| NULL | Plan Study Schedule     | Organize time for effective learning.      |
+| NULL | Attend Lectures         | Engage in coding sessions.                 |
+| NULL | Take Notes              | Capture key information systematically.    |
+| NULL | Review Lecture Notes    | Recap key points for retention.            |
+| NULL | Code Challenges         | Solve coding exercises.                    |
+| NULL | Research Topics         | Explore and gather additional information. |
+| NULL | Complete Assignments    | Finish assigned tasks promptly.            |
+| NULL | Collaborate on Projects | Work with peers on coding projects.        |
+| NULL | Practice Problems       | Apply concepts through problem-solving.    |
+| NULL | Study New Technologies  | Explore emerging programming tools.        |
+| NULL | Build Portfolio         | Create a showcase of projects.             |
++------+-------------------------+--------------------------------------------+
+11 rows in set (0.00 sec)
+
+mysql> DESCRIBE task;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| id           | int          | YES  |     | NULL    |       |
+| title        | varchar(255) | YES  |     | NULL    |       |
+| _description | varchar(500) | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
