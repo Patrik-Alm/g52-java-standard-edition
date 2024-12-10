@@ -21,18 +21,6 @@ mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA;
 | sys                 |
 | sakila              |
 | world               |
-| school_db           |
-| lecture_db          |
-| test_db             |
-| name_storage_db     |
-| meeting_calendar_db |
-| g46_jpa_lecture     |
-| g48_jpa_lecture     |
-| g48-todo-api        |
-| email_sender_db     |
-| g46_todo_db         |
-| marketplace-api     |
-| marketplace         |
 +---------------------+
 18 rows in set (0.01 sec)
 
@@ -49,18 +37,6 @@ mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA;
 | sys                 |
 | sakila              |
 | world               |
-| school_db           |
-| lecture_db          |
-| test_db             |
-| name_storage_db     |
-| meeting_calendar_db |
-| g46_jpa_lecture     |
-| g48_jpa_lecture     |
-| g48-todo-api        |
-| email_sender_db     |
-| g46_todo_db         |
-| marketplace-api     |
-| marketplace         |
 | 00_test_db          |
 +---------------------+
 19 rows in set (0.00 sec)
@@ -99,6 +75,24 @@ mysql> SHOW COLUMNS FROM task;
 mysql> SELECT * FROM task;
 Empty set (0.01 sec)
 
+mysql> -- Seeding data
+
+mysql> INSERT INTO TASK (title, _description)
+    -> VALUES
+    ->     ('Plan Study Schedule', 'Organize time for effective learning.'),
+    ->     ('Attend Lectures', 'Engage in coding sessions.'),
+    ->     ('Take Notes', 'Capture key information systematically.'),
+    ->     ('Review Lecture Notes', 'Recap key points for retention.'),
+    ->     ('Code Challenges', 'Solve coding exercises.'),
+    ->     ('Research Topics', 'Explore and gather additional information.'),
+    ->     ('Complete Assignments', 'Finish assigned tasks promptly.'),
+    ->     ('Collaborate on Projects', 'Work with peers on coding projects.'),
+    ->     ('Practice Problems', 'Apply concepts through problem-solving.'),
+    ->     ('Study New Technologies', 'Explore emerging programming tools.'),
+    ->     ('Build Portfolio', 'Create a showcase of projects.');
+Query OK, 11 rows affected (0.01 sec)
+Records: 11  Duplicates: 0  Warnings: 0
+
 mysql> SELECT * FROM task;
 +------+-------------------------+--------------------------------------------+
 | id   | title                   | _description                               |
@@ -116,6 +110,7 @@ mysql> SELECT * FROM task;
 | NULL | Build Portfolio         | Create a showcase of projects.             |
 +------+-------------------------+--------------------------------------------+
 11 rows in set (0.00 sec)
+
 
 mysql> DESCRIBE task;
 +--------------+--------------+------+-----+---------+-------+
