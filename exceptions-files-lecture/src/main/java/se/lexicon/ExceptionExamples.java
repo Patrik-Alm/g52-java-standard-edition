@@ -114,6 +114,7 @@ public class ExceptionExamples {
     public static void readTextFromFile() {
         //java.io
         //java.nio
+        // https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Files.html
 
 //        Path filePath = Paths.get("C:\\Users\\lexicon-simon\\lexicon-course-code\\Java Group 52\\g52-java-standard-edition\\exceptions-files-lecture\\folder\\lastnames.txt");
         Path filePath = Paths.get("exceptions-files-lecture/folder/lastnames.txt");
