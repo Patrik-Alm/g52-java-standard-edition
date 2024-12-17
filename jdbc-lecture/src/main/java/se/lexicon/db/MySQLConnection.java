@@ -37,8 +37,15 @@ public class MySQLConnection {
     }
 
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(url, username, password);
+    public static Connection getConnection(){
+        try{
+            return DriverManager.getConnection(url, username, password);
+
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return null;
     }
 
 
