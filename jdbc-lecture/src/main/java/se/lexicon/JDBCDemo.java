@@ -2,7 +2,7 @@ package se.lexicon;
 
 import java.sql.*;
 
-public class Main {
+public class JDBCDemo {
     public static void main(String[] args) {
 
         // Current Version - JDBC 4.3 since Java 9 (2017-09-21)
@@ -20,17 +20,19 @@ public class Main {
                     System.out.println(
                             resultSet.getString("title") + " - " + resultSet.getString("_description")
                     );
-
             }
-
-
-
         }catch (SQLException e){
             e.printStackTrace();
         }
-
-
-
+        finally {
+            try{
+                if (resultSet != null && !resultSet.isClosed()){
+                    resultSet.close();
+                }
+            }catch (SQLException ex){
+                ex.printStackTrace();
+            }
+        }
 
     }
 }
