@@ -12,7 +12,7 @@ import java.util.List;
     - Prevent returning a null list
     - Prevent adding null meeting
 */
-public class MeetingCalender {
+public class MeetingCalendar {
 
     private int id;
     private String title;
@@ -20,15 +20,15 @@ public class MeetingCalender {
     private List<Meeting> meetings;
 
 
-    public MeetingCalender(int id, String title, String username) {
+    public MeetingCalendar(int id, String title, String username) {
         this(title, username);
         this.id = id;
     }
-    public MeetingCalender(String title, String username) {
+    public MeetingCalendar(String title, String username) {
         this(title);
         this.username = username;
     }
-    public MeetingCalender(String title) {
+    public MeetingCalendar(String title) {
         this.title = title;
     }
 
@@ -65,6 +65,7 @@ public class MeetingCalender {
         if (meetings == null){meetings = new ArrayList<>();}
         if (meeting == null) throw new IllegalArgumentException("meeting is null");
 
+        meeting.setMeetingCalendar(this);
         meetings.add(meeting);
     }
     public void addMeeting(List<Meeting> meetings){} // TODO - Impl
@@ -75,17 +76,18 @@ public class MeetingCalender {
         if (meeting == null) throw new IllegalArgumentException("meeting is null");
 
         meetings.remove(meeting);
+        meeting.setMeetingCalendar(null); // TODO - Question? allow orphan meetings?
     }
 
     public void removeMeeting(List<Meeting> meetings){} // TODO - Impl
 
-    public String meetingCalenderInfo() {
+    public String meetingCalendarInfo() {
         final StringBuilder sb = new StringBuilder();
         sb.append("MeetingCalender Info: ").append('\n');
         sb.append("id ").append(id).append('\n');
         sb.append("title ").append(title).append('\n');
         sb.append("username ").append(username).append('\n');
-        //sb.append("meetings ").append(meetings).append('\n'); // TODO - Try Recursive behavior
+        //sb.append("meetings ").append(meetings).append('\n'); // TODO - Try Recursive behavior - No
         return sb.toString();
     }
 

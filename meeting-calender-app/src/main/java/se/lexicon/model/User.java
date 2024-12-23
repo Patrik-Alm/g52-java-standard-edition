@@ -1,5 +1,7 @@
 package se.lexicon.model;
 
+import java.security.SecureRandom;
+import java.util.Random;
 import java.util.UUID;
 
 /*
@@ -56,8 +58,24 @@ public class User {
         this.expired = expired;
     }
 
-    private String generateRandomPassword() {
+    private String generateRandomPasswordUUID() {
         return UUID.randomUUID().toString().replace("-", "").substring(0, 15);
+        // 0123457689ABCDEF - HEXADECIMAL
+    }
+
+    private String generateRandomPassword(){
+        String allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        int passwordLength = 10;
+        StringBuilder stringBuilder = new StringBuilder();
+        Random random = new SecureRandom();
+
+        for (int i = 0; i < passwordLength; i++) {
+            int randomIndex = random.nextInt(allowedCharacters.length());
+            char randomChar = allowedCharacters.charAt(randomIndex);
+            stringBuilder.append(randomChar);
+        }
+
+        return stringBuilder.toString();
     }
 
     public String userInfo() {

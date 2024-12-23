@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 /*
     Constructors
     title, start, end, description
-    title, start, end, description, calender
+    title, start, end, description, calendar
 
-    id, title, start, end, description, calender
+    id, title, start, end, description, calendar
 
     - Validate that meeting end is not before start.
 
@@ -18,7 +18,7 @@ public class Meeting {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String description;
-    private MeetingCalender meetingCalender;
+    private MeetingCalendar meetingCalendar;
 
 
     public Meeting(String title, LocalDateTime startTime, LocalDateTime endTime, String description) {
@@ -29,15 +29,15 @@ public class Meeting {
         this.timeValidation();
     }
 
-    public Meeting(int id, String title, LocalDateTime startTime, LocalDateTime endTime, String description, MeetingCalender meetingCalender) {
+    public Meeting(int id, String title, LocalDateTime startTime, LocalDateTime endTime, String description, MeetingCalendar meetingCalendar) {
         this(title, startTime, endTime, description);
         this.id = id;
-        this.meetingCalender = meetingCalender;
+        this.meetingCalendar = meetingCalendar;
     }
 
-    public Meeting(String title, LocalDateTime startTime, LocalDateTime endTime, String description, MeetingCalender meetingCalender) {
+    public Meeting(String title, LocalDateTime startTime, LocalDateTime endTime, String description, MeetingCalendar meetingCalendar) {
         this(title, startTime, endTime, description);
-        this.meetingCalender = meetingCalender;
+        this.meetingCalendar = meetingCalendar;
     }
 
     public int getId() {
@@ -76,12 +76,12 @@ public class Meeting {
         this.description = description;
     }
 
-    public MeetingCalender getMeetingCalender() {
-        return meetingCalender;
+    public MeetingCalendar getMeetingCalendar() {
+        return meetingCalendar;
     }
 
-    public void setMeetingCalender(MeetingCalender meetingCalender) {
-        this.meetingCalender = meetingCalender;
+    public void setMeetingCalendar(MeetingCalendar meetingCalendar) {
+        this.meetingCalendar = meetingCalendar;
     }
 
     public String meetingInfo() {
@@ -92,7 +92,7 @@ public class Meeting {
         sb.append("StartTime: ").append(startTime).append('\n');
         sb.append("EndTime:  ").append(endTime).append('\n');
         sb.append("Description: ").append(description).append('\n');
-        sb.append("calendar: ").append((meetingCalender != null) ? meetingCalender.meetingCalenderInfo() :" ").append('\n');
+        sb.append("Calendar: ").append((meetingCalendar != null) ? meetingCalendar.meetingCalendarInfo() :" ").append('\n');
         return sb.toString();
     }
     private void timeValidation(){

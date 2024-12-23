@@ -2,7 +2,7 @@
 - [x] Define Project
 - [x] Define models
 - [x] Create class diagram
-- [-] Implement models *
+- [x] Implement models *
 - [ ] Define data layer
 - [ ] Create interfaces
 - [ ] Create custom exceptions
