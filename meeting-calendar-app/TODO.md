@@ -3,8 +3,8 @@
 - [x] Define models
 - [x] Create class diagram
 - [x] Implement models *
-- [ ] Define data layer
-- [ ] Create interfaces
+- [x] Define data layer
+- [x] Create interfaces
 - [ ] Create custom exceptions
 
 - [ ] Create SQL Tables *
