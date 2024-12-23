@@ -1,8 +1,8 @@
 # TASKS
-- [ ] Define Project
-- [ ] Define models
-- [ ] Create class diagram
-- [ ] Implement models *
+- [x] Define Project
+- [x] Define models
+- [x] Create class diagram
+- [-] Implement models *
 - [ ] Define data layer
 - [ ] Create interfaces
 - [ ] Create custom exceptions
