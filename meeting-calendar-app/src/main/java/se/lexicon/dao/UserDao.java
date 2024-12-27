@@ -8,12 +8,11 @@ import java.util.Optional;
 
 public interface UserDao {
 
-    String CREATE_USER_SQL= "";
+    String CREATE_USER_SQL= "INSERT INTO users (username,_password) VALUES (?,?)";
 
-    String FIND_BY_USERNAME_SQL = "";
+    String FIND_BY_USERNAME_SQL = "SELECT * FROM users WHERE username = ?";
 
-    String FIND_BY_USERNAME_AND_PASSWORD = "";
-
+    String FIND_BY_USERNAME_AND_PASSWORD = "SELECT * FROM users WHERE username = ? AND _password = ?";
 
     User createUser(String username);
 

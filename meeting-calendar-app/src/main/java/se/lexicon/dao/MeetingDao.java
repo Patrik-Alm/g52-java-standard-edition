@@ -7,13 +7,13 @@ import java.util.Optional;
 
 public interface MeetingDao {
 
-    String CREATE_MEETING_SQL = "";
+    String CREATE_MEETING_SQL = "INSERT INTO meetings (title, start_at, end_at, _description, calendar_id) VALUES (?, ?, ?, ?, ?)";
 
-    String FIND_BY_ID_SQL = "";
+    String FIND_BY_ID_SQL = "SELECT * FROM meeting WHERE id = ?"; // TODO - Fetch the MeetingCalendar Data - JOIN
 
-    String FIND_ALL_BY_CALENDAR_ID_SQL = "";
+    String FIND_ALL_BY_CALENDAR_ID_SQL = "SELECT * FROM meetings WHERE calendar_id = ?";
 
-    String DELETE_MEETING_SQL = "";
+    String DELETE_MEETING_SQL = "DELETE FROM meetings WHERE id = ?";
 
 
     Meeting createMeeting(Meeting meeting);

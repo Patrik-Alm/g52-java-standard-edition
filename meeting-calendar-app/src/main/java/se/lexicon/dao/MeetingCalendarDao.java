@@ -6,19 +6,19 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-public interface MeetingCalenderDao {
+public interface MeetingCalendarDao {
 
-    String CREATE_MEETING_CALENDAR_SQL = "";
+    String CREATE_MEETING_CALENDAR_SQL = "INSERT INTO meeting_calendars (USERNAME, TITLE) VALUES(?,?)";
 
-    String FIND_BY_ID_SQL = "";
+    String FIND_BY_ID_SQL = "SELECT * FROM meeting_calendars WHERE ID=?";
 
-    String FIND_BY_USERNAME_SQL ="";
+    String FIND_BY_USERNAME_SQL ="SELECT * FROM meeting_calendars WHERE USERNAME = ?";
 
-    String FIND_BY_TITLE_SQL = "";
+    String FIND_BY_TITLE_SQL = "SELECT * FROM meeting_calendars WHERE TITLE = ?";
 
-    String FIND_All_CALENDERS_BY_USERNAME = "";
+    String FIND_All_CALENDERS_BY_USERNAME = "SELECT * FROM meeting_calendars where username = ?";
 
-    String DELETE_CALENDAR_SQL = "";
+    String DELETE_CALENDAR_SQL = "DELETE FROM meeting_calendars WHERE ID = ?";
 
 
     MeetingCalendar createMeetingCalendar(String title, String username);
