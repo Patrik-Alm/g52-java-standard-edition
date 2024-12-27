@@ -7,7 +7,8 @@
 - [x] Create interfaces
 - [ ] Create custom exceptions
 
-- [ ] Create SQL Tables *
+- [x] Define Entity Relationships
+- [x] Create SQL Tables *
 - [ ] Create database connection
 - [ ] Create custom exception
 - [ ] Create Exception Handler (ConsoleColors)
