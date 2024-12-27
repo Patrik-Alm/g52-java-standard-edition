@@ -1,7 +1,9 @@
 package se.lexicon;
 
 import se.lexicon.dao.db.MysqlConnection;
+import se.lexicon.exception.CalendarExceptionHandler;
 import se.lexicon.model.User;
+import se.lexicon.util.ConsoleColors;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -28,10 +30,12 @@ public class Main {
         //System.out.println(calendar.meetingCalendarInfo());
         //calendar.getMeetings().forEach((m) -> System.out.println(m.meetingInfo()));
 
+        System.out.println(ConsoleColors.BLUE +"Hello" + ConsoleColors.RESET);
+
         try{
             DriverManager.getConnection(MysqlConnection.JDBC_URL, MysqlConnection.JDBC_USER,"ewrqw");
         }catch (SQLException e){
-            e.printStackTrace();
+            CalendarExceptionHandler.handleException(e);
         }
 
 
