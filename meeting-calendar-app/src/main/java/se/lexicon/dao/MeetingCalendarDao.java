@@ -8,17 +8,15 @@ import java.util.Optional;
 
 public interface MeetingCalendarDao {
 
-    String CREATE_MEETING_CALENDAR_SQL = "INSERT INTO meeting_calendars (USERNAME, TITLE) VALUES(?,?)";
+    String CREATE_MEETING_CALENDAR_SQL = "INSERT INTO meeting_calendars (title, username) VALUES(?,?)";
 
-    String FIND_BY_ID_SQL = "SELECT * FROM meeting_calendars WHERE ID=?";
+    String FIND_BY_ID_SQL = "SELECT * FROM meeting_calendars WHERE id=?";
 
-    String FIND_BY_USERNAME_SQL ="SELECT * FROM meeting_calendars WHERE USERNAME = ?";
+    String FIND_BY_USERNAME_SQL ="SELECT * FROM meeting_calendars WHERE username = ?";
 
-    String FIND_BY_TITLE_SQL = "SELECT * FROM meeting_calendars WHERE TITLE = ?";
+    String FIND_BY_TITLE_SQL = "SELECT * FROM meeting_calendars WHERE title = ?";
 
-    String FIND_All_CALENDERS_BY_USERNAME = "SELECT * FROM meeting_calendars where username = ?";
-
-    String DELETE_CALENDAR_SQL = "DELETE FROM meeting_calendars WHERE ID = ?";
+    String DELETE_CALENDAR_BY_ID_SQL = "DELETE FROM meeting_calendars WHERE id = ?";
 
 
     MeetingCalendar createMeetingCalendar(String title, String username);
