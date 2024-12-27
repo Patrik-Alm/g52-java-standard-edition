@@ -9,7 +9,7 @@
 
 - [x] Define Entity Relationships
 - [x] Create SQL Tables *
-- [ ] Create database connection
+- [x] Create database connection
 - [ ] Create custom exception
 - [ ] Create Exception Handler (ConsoleColors)
 
