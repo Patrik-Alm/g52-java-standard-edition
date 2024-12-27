@@ -81,9 +81,9 @@ public class User {
     public String userInfo() {
         final StringBuilder sb = new StringBuilder();
         sb.append("User Info: ").append('\n');
-        sb.append("username ").append(username).append('\n');
-        sb.append("password ").append(password).append('\n'); // TODO - HIDE?
-        sb.append("expired ").append(expired).append('\n');
+        sb.append("username: ").append(username).append('\n');
+        sb.append("password: ").append(password).append('\n'); // TODO - HIDE?
+        sb.append("expired: ").append(expired).append('\n');
         return sb.toString();
     }
 }

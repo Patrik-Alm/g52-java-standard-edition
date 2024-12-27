@@ -1,9 +1,13 @@
 package se.lexicon;
 
+import se.lexicon.dao.UserDao;
 import se.lexicon.dao.db.MysqlConnection;
+import se.lexicon.dao.impl.UserDaoImpl;
 import se.lexicon.exception.CalendarExceptionHandler;
 import se.lexicon.model.User;
 import se.lexicon.util.ConsoleColors;
+
+import java.util.Optional;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -39,7 +43,11 @@ public class Main {
         }
 
 
+        UserDao userDao = new UserDaoImpl();
 
+        Optional<User> foo = userDao.findByUserName("foo");
+
+        foo.ifPresent(u -> System.out.println(u.userInfo()));
 
 
 

@@ -5,16 +5,16 @@
 - [x] Implement models *
 - [x] Define data layer
 - [x] Create interfaces
-- [ ] Create custom exceptions
+- [x] Create custom exceptions
 
 - [x] Define Entity Relationships
 - [x] Create SQL Tables *
 - [x] Create database connection
-- [ ] Create custom exception
-- [ ] Create Exception Handler (ConsoleColors)
+- [x] Create custom exception
+- [x] Create Exception Handler (ConsoleColors)
 
-- [ ] IMPL DAO QUERIES *
-- [ ] IMPL DAO *
+- [-] IMPL DAO QUERIES *
+- [-] IMPL DAO *
 
 
 # Interact with Application
