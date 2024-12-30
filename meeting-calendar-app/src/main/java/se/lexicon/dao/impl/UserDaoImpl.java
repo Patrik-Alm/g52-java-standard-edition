@@ -2,7 +2,9 @@ package se.lexicon.dao.impl;
 
 import se.lexicon.dao.UserDao;
 import se.lexicon.dao.db.MysqlConnection;
+import se.lexicon.exception.AuthorizationFailedException;
 import se.lexicon.exception.MySQLException;
+import se.lexicon.exception.UserExpiredException;
 import se.lexicon.model.User;
 
 import java.sql.Connection;
@@ -25,7 +27,7 @@ public class UserDaoImpl implements UserDao {
 
         Connection connection = MysqlConnection.getConnection();
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(UserDao.CREATE_USER_SQL)){
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UserDao.CREATE_USER_SQL)) {
 
             User user = new User(username);
 
@@ -38,7 +40,7 @@ public class UserDaoImpl implements UserDao {
             }
 
             return user;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -49,24 +51,24 @@ public class UserDaoImpl implements UserDao {
     public Optional<User> findByUserName(String username) {
 
         Connection connection = MysqlConnection.getConnection();
-        try(PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_USERNAME_SQL)){
+        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_USERNAME_SQL)) {
 
             preparedStatement.setString(1, username);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 String foundUsername = resultSet.getString("username");
                 String foundPassword = resultSet.getString("_password");
                 boolean foundExpired = resultSet.getBoolean("is_expired");
                 LocalDateTime timestampOfCreation = resultSet.getTimestamp("created_at").toLocalDateTime();
 
-                User user = new User(foundUsername,foundPassword,foundExpired);
+                User user = new User(foundUsername, foundPassword, foundExpired);
                 System.out.println(timestampOfCreation);
 
                 return Optional.of(user);
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -75,7 +77,31 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean authenticate(User user) {
-        return false;  // TODO - Implement Method
+    public boolean authenticate(User user) throws AuthorizationFailedException, UserExpiredException {
+
+        Connection connection = MysqlConnection.getConnection();
+
+        try (
+                PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_USERNAME_AND_PASSWORD)
+        ) {
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+
+                boolean isExpired = resultSet.getBoolean("is_expired");
+                if(isExpired) throw new UserExpiredException("User is Expired");
+
+            }else {
+                throw new AuthorizationFailedException("Authorization Failed. Invalid Credentials");
+            }
+
+            return true;
+
+        } catch (SQLException e) {
+            throw new MySQLException("Error Occurred while authenticating user by username: " + user.getUsername(), e);
+        }
     }
 }

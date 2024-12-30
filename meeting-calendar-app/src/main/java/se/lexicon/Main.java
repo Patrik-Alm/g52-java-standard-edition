@@ -11,9 +11,12 @@ import java.util.Optional;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        UserDao userDao = new UserDaoImpl();
 
 //        User user = new User("root");
 //        System.out.println(user.userInfo());
@@ -34,22 +37,48 @@ public class Main {
         //System.out.println(calendar.meetingCalendarInfo());
         //calendar.getMeetings().forEach((m) -> System.out.println(m.meetingInfo()));
 
-        System.out.println(ConsoleColors.BLUE +"Hello" + ConsoleColors.RESET);
+//        UserDao userDao = new UserDaoImpl();
+//
+//        Optional<User> foo = userDao.findByUserName("foo");
+//
+//        foo.ifPresent(u -> System.out.println(u.userInfo()));
+
+
+//        login(userDao);
+//        register(userDao);
+
+    }
+
+    private static void register(UserDao userDao) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a username: ");
+        String username = scanner.nextLine();
+
+        User user = userDao.createUser(username);
+
+        System.out.println(user.userInfo());
+        System.out.println("--------------------------");
+    }
+
+    private static void login(UserDao userDao) {
+        System.out.println(ConsoleColors.BLUE +"Hello, Let's sign in" + ConsoleColors.RESET);
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your username: ");
+        String username = scanner.nextLine();
+        System.out.println("Enter your password: ");
+        String password = scanner.nextLine();
+        User user = new User(username, password);
+
 
         try{
-            DriverManager.getConnection(MysqlConnection.JDBC_URL, MysqlConnection.JDBC_USER,"ewrqw");
-        }catch (SQLException e){
+            boolean is_authenticated = userDao.authenticate(user);
+            if (is_authenticated){
+                System.out.println(ConsoleColors.GREEN + "You have successfully logged in!" + ConsoleColors.RESET);
+            }
+
+        }catch (Exception e){
             CalendarExceptionHandler.handleException(e);
         }
-
-
-        UserDao userDao = new UserDaoImpl();
-
-        Optional<User> foo = userDao.findByUserName("foo");
-
-        foo.ifPresent(u -> System.out.println(u.userInfo()));
-
-
-
     }
 }
