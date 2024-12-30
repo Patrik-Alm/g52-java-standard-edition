@@ -29,6 +29,10 @@ public class Meeting {
         this.timeValidation();
     }
 
+    public Meeting(int id, String title, LocalDateTime startTime, LocalDateTime endTime, String description) {
+        this(title, startTime, endTime, description);
+        this.id = id;
+    }
     public Meeting(int id, String title, LocalDateTime startTime, LocalDateTime endTime, String description, MeetingCalendar meetingCalendar) {
         this(title, startTime, endTime, description);
         this.id = id;

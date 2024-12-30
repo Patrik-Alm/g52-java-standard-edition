@@ -1,11 +1,14 @@
 package se.lexicon;
 
 import se.lexicon.dao.MeetingCalendarDao;
+import se.lexicon.dao.MeetingDao;
 import se.lexicon.dao.UserDao;
 import se.lexicon.dao.db.MysqlConnection;
 import se.lexicon.dao.impl.MeetingCalendarDaoImpl;
+import se.lexicon.dao.impl.MeetingDaoImpl;
 import se.lexicon.dao.impl.UserDaoImpl;
 import se.lexicon.exception.CalendarExceptionHandler;
+import se.lexicon.model.Meeting;
 import se.lexicon.model.MeetingCalendar;
 import se.lexicon.model.User;
 import se.lexicon.util.ConsoleColors;
@@ -21,6 +24,7 @@ public class Main {
         Connection connection = MysqlConnection.getConnection();
 
         UserDao userDao = new UserDaoImpl(connection);
+        MeetingDao meetingDao = new MeetingDaoImpl(connection);
         MeetingCalendarDao calendarDao = new MeetingCalendarDaoImpl(connection);
 
 //        User user = new User("root");
@@ -53,9 +57,28 @@ public class Main {
 //        register(userDao);
 
 
-        createMeetingCalendar(calendarDao);
+//        createMeetingCalendar(calendarDao);
 
 
+
+        // Display meeting
+
+//        findingMeeting(meetingDao);
+
+
+    }
+
+    private static void findingMeeting(MeetingDao meetingDao) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the meeting id: ");
+        int meetingId = scanner.nextInt();
+
+        Optional<Meeting> meetingFoundById = meetingDao.findById(meetingId);
+
+
+        meetingFoundById.ifPresentOrElse(
+                meeting -> System.out.println(meeting.meetingInfo()), //if present
+                ()-> System.out.println(ConsoleColors.YELLOW +"NOT Found" + ConsoleColors.RESET)); // If Empty
     }
 
     private static void createMeetingCalendar(MeetingCalendarDao calendarDao) {

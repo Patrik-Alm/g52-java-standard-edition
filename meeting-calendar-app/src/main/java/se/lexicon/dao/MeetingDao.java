@@ -9,7 +9,12 @@ public interface MeetingDao {
 
     String CREATE_MEETING_SQL = "INSERT INTO meetings (title, start_at, end_at, _description, calendar_id) VALUES (?, ?, ?, ?, ?)";
 
-    String FIND_BY_ID_SQL = "SELECT * FROM meeting WHERE id = ?"; // TODO - Fetch the MeetingCalendar Data - JOIN
+    String FIND_BY_ID_SQL =
+                    """
+                    SELECT m.*, mc.username, mc.title AS calendar_title FROM meetings m
+                    INNER JOIN meeting_calendars mc ON m.calendar_id = mc.id
+                    WHERE m.id = ?
+                    """;
 
     String FIND_ALL_BY_CALENDAR_ID_SQL = "SELECT * FROM meetings WHERE calendar_id = ?";
 
