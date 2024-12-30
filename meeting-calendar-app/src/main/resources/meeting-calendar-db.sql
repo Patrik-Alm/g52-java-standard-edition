@@ -20,7 +20,7 @@ Create TABLE meeting_calendars
     id         INT AUTO_INCREMENT PRIMARY KEY,
     title      VARCHAR(100) NOT NULL,
     username   VARCHAR(255),
-    created_at DATETIME     NOT NULL,
+    created_at DATETIME     DEFAULT NOW(),
     FOREIGN KEY (username) REFERENCES users (username)
 );
 
