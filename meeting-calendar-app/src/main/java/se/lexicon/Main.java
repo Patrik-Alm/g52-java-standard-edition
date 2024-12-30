@@ -12,6 +12,8 @@ import se.lexicon.model.Meeting;
 import se.lexicon.model.MeetingCalendar;
 import se.lexicon.model.User;
 import se.lexicon.util.ConsoleColors;
+import se.lexicon.view.CalendarView;
+import se.lexicon.view.CalendarViewConsoleUI;
 
 import java.sql.Connection;
 import java.util.Optional;
@@ -26,6 +28,13 @@ public class Main {
         UserDao userDao = new UserDaoImpl(connection);
         MeetingDao meetingDao = new MeetingDaoImpl(connection);
         MeetingCalendarDao calendarDao = new MeetingCalendarDaoImpl(connection);
+
+        CalendarView calendarView = new CalendarViewConsoleUI();
+
+        calendarView.displayMenu();
+
+        calendarView.displaySuccessMessage("Lecture is OVER for today 🎆🎆🎆");
+
 
 //        User user = new User("root");
 //        System.out.println(user.userInfo());
