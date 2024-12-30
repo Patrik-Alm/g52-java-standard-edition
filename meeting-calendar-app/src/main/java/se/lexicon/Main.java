@@ -1,22 +1,27 @@
 package se.lexicon;
 
+import se.lexicon.dao.MeetingCalendarDao;
 import se.lexicon.dao.UserDao;
 import se.lexicon.dao.db.MysqlConnection;
+import se.lexicon.dao.impl.MeetingCalendarDaoImpl;
 import se.lexicon.dao.impl.UserDaoImpl;
 import se.lexicon.exception.CalendarExceptionHandler;
+import se.lexicon.model.MeetingCalendar;
 import se.lexicon.model.User;
 import se.lexicon.util.ConsoleColors;
 
+import java.sql.Connection;
 import java.util.Optional;
-
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
         UserDao userDao = new UserDaoImpl();
+
+        Connection connection = MysqlConnection.getConnection();
+
+        MeetingCalendarDao calendarDao = new MeetingCalendarDaoImpl(connection);
 
 //        User user = new User("root");
 //        System.out.println(user.userInfo());
@@ -47,6 +52,22 @@ public class Main {
 //        login(userDao);
 //        register(userDao);
 
+
+        createMeetingCalendar(calendarDao);
+
+
+    }
+
+    private static void createMeetingCalendar(MeetingCalendarDao calendarDao) {
+        //Create a calendar for foo user.
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a title: ");
+        String title = scanner.nextLine();
+        String username = "foo"; // Hardcoded  TODO - Only allow while logged in first.
+
+        MeetingCalendar meetingCalendar = calendarDao.createMeetingCalendar(title, username);
+
+        System.out.println(meetingCalendar.meetingCalendarInfo());
     }
 
     private static void register(UserDao userDao) {

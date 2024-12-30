@@ -84,9 +84,9 @@ public class MeetingCalendar {
     public String meetingCalendarInfo() {
         final StringBuilder sb = new StringBuilder();
         sb.append("MeetingCalender Info: ").append('\n');
-        sb.append("id ").append(id).append('\n');
-        sb.append("title ").append(title).append('\n');
-        sb.append("username ").append(username).append('\n');
+        sb.append("id: ").append(id).append('\n');
+        sb.append("title: ").append(title).append('\n');
+        sb.append("username: ").append(username).append('\n');
         //sb.append("meetings ").append(meetings).append('\n'); // TODO - Try Recursive behavior - No
         return sb.toString();
     }
