@@ -1,7 +1,6 @@
 package se.lexicon.dao.impl;
 
 import se.lexicon.dao.UserDao;
-import se.lexicon.dao.db.MysqlConnection;
 import se.lexicon.exception.AuthorizationFailedException;
 import se.lexicon.exception.MySQLException;
 import se.lexicon.exception.UserExpiredException;
@@ -22,11 +21,14 @@ import java.util.Optional;
 public class UserDaoImpl implements UserDao {
 
 
+    private Connection connection;
+
+    public UserDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
+
     @Override
     public User createUser(String username) {
-
-        Connection connection = MysqlConnection.getConnection();
-
         try (PreparedStatement preparedStatement = connection.prepareStatement(UserDao.CREATE_USER_SQL)) {
 
             User user = new User(username);
@@ -49,8 +51,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Optional<User> findByUserName(String username) {
-
-        Connection connection = MysqlConnection.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_USERNAME_SQL)) {
 
             preparedStatement.setString(1, username);
@@ -78,9 +78,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean authenticate(User user) throws AuthorizationFailedException, UserExpiredException {
-
-        Connection connection = MysqlConnection.getConnection();
-
         try (
                 PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_USERNAME_AND_PASSWORD)
         ) {

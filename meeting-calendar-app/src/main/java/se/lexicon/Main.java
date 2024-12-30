@@ -17,10 +17,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        UserDao userDao = new UserDaoImpl();
 
         Connection connection = MysqlConnection.getConnection();
 
+        UserDao userDao = new UserDaoImpl(connection);
         MeetingCalendarDao calendarDao = new MeetingCalendarDaoImpl(connection);
 
 //        User user = new User("root");
