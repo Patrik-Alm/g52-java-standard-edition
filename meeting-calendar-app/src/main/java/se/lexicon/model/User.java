@@ -39,6 +39,7 @@ public class User {
 
     private void setUsername(String username) {
         if (username == null || username.isEmpty()) throw new IllegalArgumentException("username should not be null or empty.");
+        username= username.toLowerCase();
         this.username = username;
     }
 
