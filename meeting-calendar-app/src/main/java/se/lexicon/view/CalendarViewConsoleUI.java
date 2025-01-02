@@ -5,6 +5,7 @@ import se.lexicon.model.MeetingCalendar;
 import se.lexicon.model.User;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class CalendarViewConsoleUI implements CalendarView {
     @Override
@@ -34,7 +35,10 @@ public class CalendarViewConsoleUI implements CalendarView {
 
     @Override
     public String promoteGetString() {
-        return "";  // TODO - IMPLEMENT
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        return input;
     }
 
     @Override
@@ -44,16 +48,28 @@ public class CalendarViewConsoleUI implements CalendarView {
 
     @Override
     public String promoteCalenderForm() {
-        return "";  // TODO - IMPLEMENT
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Calendar Title: ");
+        String title = scanner.nextLine();
+        return title;
     }
 
     @Override
     public String promoteUserFormRegister() {
-        return "";  // TODO - IMPLEMENT
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a username: ");
+        String username = scanner.nextLine();
+        return username;
     }
 
     @Override
     public User promoteUserFormSignIn() {
-        return null;  // TODO - IMPLEMENT
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your username: ");
+        String username = scanner.nextLine();
+        System.out.println("Enter your password: ");
+        String password = scanner.nextLine();
+        return new User(username, password);
     }
 }

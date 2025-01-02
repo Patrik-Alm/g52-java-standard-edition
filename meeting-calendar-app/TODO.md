@@ -13,18 +13,18 @@
 - [x] Create custom exception
 - [x] Create Exception Handler (ConsoleColors)
 
-- [-] IMPL DAO QUERIES *
-- [-] IMPL DAO *
+- [x] IMPL DAO QUERIES *
+- [x] IMPL DAO *
 
 
 # Interact with Application
-- [ ] Register User
-- [ ] Login User
+- [x] Register User
+- [x] Login User
 
 
 > It should only be possible when Signed In
-- [ ] Create Meeting Calendars
+- [x] Create Meeting Calendars
 - [ ] Create Meeting
 - [ ] Delete Meeting
 - [ ] Display Calendar Meeting
-- [ ] Logout
+- [x] Logout
